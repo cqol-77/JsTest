@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+    <style type="text/css">
+        *{margin:0;padding:0;}
+        ul{overflow:hidden; color:#000; margin:0 auto;}
+        li{float:left; list-style:none; position:relative; cursor:pointer;}
+        span{display:block; height:30px; width:40px; background-color:#808080; margin:0 2px; cursor:pointer;}
+        .sub-nav{ display:none;}
+
+    </style>
+</head>
+
+<body>
+<ul id="nav">
+    <li>
+        <span>一级</span>
+        <ul class="sub-nav">
+            <li>二级</li>
+            <li>二级</li>
+            <li>二级</li>
+        </ul>
+    </li>
+    <li>
+        <span>一级</span>
+    </li>
+    <li>
+        <span>一级</span>
+        <ul class="sub-nav">
+            <li>二级</li>
+            <li>二级</li>
+            <li>二级</li>
+        </ul>
+    </li>
+</ul>
+<script type="text/javascript">
+    function getByClass(oP,cls) {
+        var aClass=[];
+        var reClass=new RegExp("(^| )" + cls + "( |$)");
+        var aElem = document.getElementsByTagName("*");
+        for(var i=0;i<aElem.length;i++) {
+            if(reClass.test(aElem[i].className)) {
+                aClass.push(aElem[i]);
+            }
+        }
+        return aClass;
+    };
+    function nextSib(node) {
+        var tt = node.parentNode.lastChild;
+        if( node == tt){
+            return null;
+        }
+        var oo = node.nextSibling;
+        while(oo.nodeType !=1 && oo.nextSibling != null) {
+            oo = oo.nextSibling;
+            return (oo.nodeType == 1)? oo : null;
+        }
+    }
+    var oNav = document.getElementById('nav');
+    var aSpan = document.getElementsByTagName('span');
+    var aSub = getByClass(oNav, 'sub-nav');
+    var oTimer = null;
+//    var bb = next(aSpan[0]);
+//    console.log(bb.nodeType);
+    for(var i = 0; i< aSpan.length; i++) {
+        aSpan[i].index = i;
+        aSpan[i].onmouseover = function() {
+            if(nextSib(aSpan[this.index])) {
+               nextSib(aSpan[this.index]).style.display = 'block';
+            }
+        }
+    }
+
+    for(var i = 0; i < aSub.length; i++) {
+        (function(i) {
+            aSub[i].onmouseover = function() {
+                aSub[i].style.display = 'block';
+            }
+        })(i)
+    }
+    oNav.onmouseout = function() {
+        for(i = 0; i< aSub.length; i++) {
+            aSub[i].style.display = 'none';
+        }
+
+    }
+</script>
+</body>
+</html>
