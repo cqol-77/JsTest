@@ -1,14 +1,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>无标题文档</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>无标题文档</title>
     <style type="text/css">
         *{margin:0;padding:0;}
-        ul{overflow:hidden; color:#000; margin:0 auto;}
-        li{float:left; list-style:none; position:relative; cursor:pointer;}
-        span{display:block; height:30px; width:40px; background-color:#808080; margin:0 2px; cursor:pointer;}
-        .sub-nav{ display:none;}
+        ul{overflow:hidden; color:#000; margin:0 auto; width:400px; height:40px;}
+        li{float:left; list-style:none; position:relative; cursor:pointer; margin:0 10px;}
+        li:hover{background-color:#dcdcdc;}
+        span{display:block; height:20px; width:40px; background-color:#808080; margin:0 2px; cursor:pointer;}
+        .sub-nav{ display:none; position:absolute; left:0;top:20px;}
 
     </style>
 </head>
@@ -62,13 +63,13 @@
     var aSpan = document.getElementsByTagName('span');
     var aSub = getByClass(oNav, 'sub-nav');
     var oTimer = null;
-//    var bb = next(aSpan[0]);
-//    console.log(bb.nodeType);
+    //    var bb = next(aSpan[0]);
+    //    console.log(bb.nodeType);
     for(var i = 0; i< aSpan.length; i++) {
         aSpan[i].index = i;
         aSpan[i].onmouseover = function() {
             if(nextSib(aSpan[this.index])) {
-               nextSib(aSpan[this.index]).style.display = 'block';
+                nextSib(aSpan[this.index]).style.display = 'block';
             }
         }
     }
@@ -85,7 +86,7 @@
             aSub[i].style.display = 'none';
         }
 
-    }
+    }//d 
 </script>
 </body>
 </html>
